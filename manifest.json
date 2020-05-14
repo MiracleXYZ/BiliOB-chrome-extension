@@ -1,0 +1,22 @@
+{
+  "name": "BiliOB",
+  "description": "在B站页面中显示BiliOB统计数据",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": {
+      "20": "img/icons/icon16.png",
+      "40": "img/icons/icon48.png"
+    },
+    "default_title": "BiliOB"
+  },
+  "icons": {
+    "16": "img/icons/icon16.png",
+    "48": "img/icons/icon48.png",
+    "128": "img/icons/icon128.png"
+  },
+  "permissions": [
+    "*://*.bilibili.com/*",
+    "storage"
+  ]
+}

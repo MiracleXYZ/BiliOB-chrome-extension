@@ -3,7 +3,6 @@ chrome.runtime.onMessage.addListener(
     if (request.contentScriptQuery == 'queryInfo') {
       var url = `https://www.biliob.com/api/author/${request.itemId}`;
       fetch(url).then((response) => {
-        console.log(response);
         return response.json()
       }).then((data) => sendResponse(data)).catch((error) => {
         sendResponse({})

@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
               document.getElementById("GR").style.color = textcolor[1];
 
               var dataArray = data.data;
-              if (dataArray.length >= 30) {
+              if (dataArray.length >= 31) {
                 var subs30d = dataArray[0].fans - dataArray[30].fans;
                 var subs30dpct = Math.round(((dataArray[0].fans - dataArray[15].fans) / (dataArray[15].fans - dataArray[30].fans) - 1) * 100);
                 var subs30davg = Math.round(subs30d / 30);

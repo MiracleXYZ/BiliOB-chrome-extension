@@ -23,8 +23,7 @@
   },
   "permissions": [
     "*://*.bilibili.com/*",
-    "*://*.biliob.com/*",
-    "storage"
+    "*://*.biliob.com/*"
   ],
   "content_scripts": [{
     "all_frames": true,

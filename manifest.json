@@ -18,5 +18,11 @@
   "permissions": [
     "*://*.bilibili.com/*",
     "storage"
-  ]
+  ],
+  "content_scripts": [{
+    "all_frames": true,
+    "js": ["app.js"],
+    "matches": ["*://*.bilibili.com/*"],
+    "run_at": "document_start"
+  }]
 }

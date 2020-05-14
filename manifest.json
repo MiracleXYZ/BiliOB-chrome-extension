@@ -1,7 +1,7 @@
 {
   "name": "BiliOB",
   "description": "在B站页面中显示BiliOB统计数据",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
@@ -15,8 +15,15 @@
     "48": "img/icons/icon48.png",
     "128": "img/icons/icon128.png"
   },
+  "background": {
+    "persistent": true,
+    "scripts": [
+      "background.js"
+    ]
+  },
   "permissions": [
     "*://*.bilibili.com/*",
+    "*://*.biliob.com/*",
     "storage"
   ],
   "content_scripts": [{
@@ -24,5 +31,11 @@
     "js": ["app.js"],
     "matches": ["*://*.bilibili.com/*"],
     "run_at": "document_start"
-  }]
+  }],
+  "web_accessible_resources": [
+    "img/*.png",
+    "img/icons/*.png",
+    "stats.html",
+    "stats-page.html"
+  ]
 }

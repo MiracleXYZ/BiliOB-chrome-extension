@@ -238,35 +238,42 @@ document.addEventListener('DOMContentLoaded', function() {
             });
           });
 
-
-
         }
       };
       
       // var title, url = "";
       biliob.execute = () => {
         biliob.tmp.focus = true;
-        var newLayout = false;
-
-        window.addEventListener("message", (e) => {
-          // console.log(ev);
-          if (e.data) {
-            console.log(e);
-            if (window.location.pathname.startsWith('/video/')) {
-              var links = document.getElementsByClassName('username');
-              if (links.length != 0) {
-                var link = links[0];
-                var mid = link.getAttribute('href').replace('//space.bilibili.com/', '');
-              } else {
-                var links2 = document.getElementsByClassName('info-name');
-                var link = links2[0];
-                var mid = link.getAttribute('href').replace('//space.bilibili.com/', '');
-              }
-              biliob.video.initialize(mid);
-            }
+        var injectTables = function () {
+          if (window.location.pathname.startsWith('/video/')) {
+            var links = document.getElementsByClassName('username');
+            var links2 = document.getElementsByClassName('info-name');
+            if (links.length != 0) {
+              var link = links[0];
+              var mid = link.getAttribute('href').replace('//space.bilibili.com/', '');
+            } else if (links2.length != 0) {
+              var link = links2[0];
+              var mid = link.getAttribute('href').replace('//space.bilibili.com/', '');
+            } else {return; }
+            biliob.video.initialize(mid);
           }
+        };
 
-        });
+        chrome.storage.sync.get({manual: false}, (options) => {
+          if (options.manual) {
+            document.getElementById('danmukuBox').addEventListener("click", (e) => {
+              // console.log(e);
+              injectTables();
+            })
+          } else {
+            window.addEventListener("message", (e) => {
+              if (e.data) {
+                // console.log(e);
+                injectTables();
+              }
+            });
+          }
+        })
 
       }
       biliob.execute();

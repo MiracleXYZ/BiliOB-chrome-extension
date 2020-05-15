@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
               document.getElementById("ChanOver").appendChild(content);
 
               document.getElementById("BOL").href = `https://www.biliob.com/author/${mid}`;
+              document.getElementById("BOLC").href = `https://space.bilibili.com/${mid}`;
 
               // 排名
               document.getElementById("SR").innerHTML = data.rank.fansRank || "--";

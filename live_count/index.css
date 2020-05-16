@@ -1,4 +1,11 @@
-.ytcp-button {
+@font-face {
+  font-family: 'Source Sans Pro Regular';
+  /* font-style: normal;
+  font-weight: 400; */
+  src: url('chrome-extension://__MSG_@@extension_id__/fonts/SourceSansPro-Regular.ttf.woff2') format('woff2');
+}
+
+.stat-button {
   user-select: none;
   font-family: 'Roboto', 'Noto', sans-serif;
   font-weight: 500;
@@ -8,7 +15,6 @@
   letter-spacing: 0.01em;
   font-size: 14px;
   line-height: 20px;
-  color: var(--ytcp-button-raised-color);
   margin: 0;
   border: 0;
   background: #1e88e5;
@@ -31,12 +37,11 @@
 }
 
 .BO_header, .BO_notice {
-  background: var(--ytcp-white-primary);
   width: 100%;
   font-family: 'YT Sans', 'Roboto', 'Arial', sans-serif;
   font-weight: 500;
   font-size: 18px;
-  border-bottom: 1px solid var(--ytcp-black-1);
+  border-bottom: 1px;
   display: flex;
   padding: 11.5px 0;
   transform: ease all 500ms;
@@ -60,17 +65,17 @@
     margin-top: 25px;
   }
 
-  .BO_header .BO_buttons ytcp-button {
+  .BO_header .BO_buttons stat-button {
     flex: 1;
     margin-left: 25px;
   }
-  .BO_header .BO_buttons ytcp-button * {
+  .BO_header .BO_buttons stat-button * {
     width: 100%;
     text-align: center;
   }
 }
 
-.BO_header ytcp-button {
+.BO_header stat-button {
   margin-right: 25px;
 }
 
@@ -118,12 +123,8 @@
   text-align: center;
 }
 
-.BO_header ytcp-button[raised] {
-  background: #b3382c;
-}
-
-ytcp-button[raised] a {
-  color: var(--ytcp-button-raised-color);
+.BO_header stat-button[raised] {
+  background: #1e88e5;
 }
 
 #BO_chart {
@@ -218,7 +219,7 @@ ytcp-button[raised] a {
 }
 
 .odometer.odometer-auto-theme, .odometer.odometer-theme-default {
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Source Sans Pro Regular", sans-serif;
   line-height: 1.1em;
 }
 .odometer.odometer-auto-theme .odometer-value, .odometer.odometer-theme-default .odometer-value {

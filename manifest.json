@@ -44,7 +44,8 @@
     "stats-page.html",
     "live_count/index.*",
     "live_count/highcharts.js",
-    "live_count/odometer.js"
+    "live_count/odometer.js",
+    "fonts/*.woff2"
   ],
   "options_ui": {
     "page": "options.html",

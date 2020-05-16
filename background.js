@@ -8,6 +8,14 @@ chrome.runtime.onMessage.addListener(
         sendResponse({})
       })
       return true;
+    } else if (request.contentScriptQuery == 'querySubs') {
+      var url = `https://api.bilibili.com/x/relation/stat?vmid=${request.itemId}`;
+      fetch(url).then((response) => {
+        return response.json()
+      }).then((data) => sendResponse(data)).catch((error) => {
+        console.log(error)
+      })
+      return true;
     }
   }
 );

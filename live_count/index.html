@@ -1,0 +1,38 @@
+<style>{{css}}</style>
+
+<div class="BO_live_count">
+  <div class="BO_header">
+    <p>B站实时粉丝计数</p>
+    <div class="BO_buttons">
+
+      <div class="stat-button">
+      <a target="_blank">
+        <div>统计信息</div>
+      </a>
+      </div>
+
+      <div id="enableStreamerMode" class="stat-button">
+      <div>直播模式</div>
+      </div>
+
+      <div id="fullscreenMode" label="Fullscreen" class="stat-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M1 1v6h2V3h4V1H1zm2 12H1v6h6v-2H3v-4zm14 4h-4v2h6v-6h-2v4zm0-16h-4v2h4v4h2V1h-2z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="BO_notice" style="display: none; position: fixed;">
+      <p>按 <b>ESC</b> 键返回</p>
+  </div>
+
+  <div class="BO_sub_count">
+    <div class="BO_logo">
+      <h1 id="subCount">--</h1>
+      <p>Powered by <b>BiliOB</b> Chrome Extension</p>
+    </div>
+  </div>
+
+  <div id="BO_chart"></div>
+</div>

@@ -19,21 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }(window.console));
   (function () {
     if (window.location.host === 'www.bilibili.com') {
-      // console.log('...');
-      var biliob = {
-        errorHandler: error => {},
-        legacy: () => {},
-        injectables: () => {}, // Font Awesome
-        tmp: {
-          update: 0,
-          focus: false,
-          defaults: {
-            featured: false
-          }
-        },
-        user: {},
-        settings: (callback) => {}
-      };
+      var biliob = {};
 
       biliob.video = {
         initialize: (mid) => {
@@ -134,12 +120,14 @@ document.addEventListener('DOMContentLoaded', function() {
               document.getElementById("ChanOver").appendChild(content);
 
               document.getElementById("BOL").href = `https://www.biliob.com/author/${mid}`;
+              document.getElementById("BOLC").href = `https://space.bilibili.com/${mid}`;
 
               // 排名
               document.getElementById("SR").innerHTML = data.rank.fansRank || "--";
               document.getElementById("VR").innerHTML = data.rank.archiveViewRank || "--";
               document.getElementById("GR").innerHTML = data.rank.likeRank || "--";
 
+              // 决定涨跌幅
               // #b3382c #41a200
               var formattedChange = function(change) {
                 if (change > 0) {
@@ -174,10 +162,12 @@ document.addEventListener('DOMContentLoaded', function() {
               // document.getElementById("GRD").style.color = textcolor[1];
               document.getElementById("GR").style.color = textcolor[1];
 
+              // 计算：未登录只会显示30天的数据
+              // TODO: 加入BiliOB登录系统
               var dataArray = data.data;
               if (dataArray.length >= 31) {
                 var subs30d = dataArray[0].fans - dataArray[30].fans;
-                var subs30dpct = Math.round(((dataArray[0].fans - dataArray[15].fans) / (dataArray[15].fans - dataArray[30].fans) - 1) * 100);
+                var subs30dpct = Math.round(((dataArray[0].fans - dataArray[15].fans) / (dataArray[15].fans - dataArray[30].fans) - 1) * 100); // 只有30天数据所以用15天做workaround
                 var subs30davg = Math.round(subs30d / 30);
                 
                 var view30d = dataArray[0].archiveView - dataArray[30].archiveView;
@@ -211,6 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var liked = 0;
               }
               
+              // 数据注入页面元素
               document.getElementById("SL30D").innerHTML = subs30d || "--";
               document.getElementById("VL30D").innerHTML = view30d || "--";
               document.getElementById("GL30D").innerHTML = like30d || "--";
@@ -241,9 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       };
       
-      // var title, url = "";
       biliob.execute = () => {
-        biliob.tmp.focus = true;
         var injectTables = function () {
           if (window.location.pathname.startsWith('/video/')) {
             var links = document.getElementsByClassName('username');
@@ -262,19 +251,16 @@ document.addEventListener('DOMContentLoaded', function() {
         chrome.storage.sync.get({manual: false}, (options) => {
           if (options.manual) {
             document.getElementById('danmukuBox').addEventListener("click", (e) => {
-              // console.log(e);
               injectTables();
             })
           } else {
             window.addEventListener("message", (e) => {
               if (e.data) {
-                // console.log(e);
                 injectTables();
               }
             });
           }
         })
-
       }
       biliob.execute();
 

@@ -22,13 +22,13 @@ document.addEventListener('DOMContentLoaded', function() {
       var biliob = {};
 
       biliob.video = {
-        initialize: (mid) => {
+        initialize: (mid, upName) => {
           if (document.getElementById("biliob") != null) {
             document.getElementById("biliob").remove();
           }
-          console.log(mid);
+          console.log(mid, upName);
           biliob.video.header();
-          biliob.video.stats(mid);
+          biliob.video.stats(mid, upName);
         },
         header: () => {
           var content = document.createElement('div');
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div style="display:table-row; text-align: center; cursor: pointer" id="SBMenu">
                   <style>.bo-active { background-color: #1e88e5 !important; }</style>
                   <div style="display:table-cell; width: 80%; padding: 5px 0; border-right: 1px solid #1e88e5; background-color: #1e88e5;" id="CHANOVER" class="bo-active" onmouseover="this.style.backgroundColor = '#1e88e5'" onmouseout="this.style.backgroundColor = '#1e88e5'">
-                    <h3 style="margin: 0; padding: 10px 0; color: #fff; font-size: 1em;">概览</h3>
+                    <h3 id="upName" style="margin: 0; padding: 10px 0; color: #fff; font-size: 1em;">名称</h3>
                   </div>
                   <div style="display:table-cell; width: 10%; padding: 5px 0; border-right: 1px solid #1e88e5; background-color: #1e88e5;" id="ACCOUNTOVER" onmouseover="this.style.backgroundColor = '#1e88e5'" onmouseout="this.style.backgroundColor = '#1e88e5'">
                     <!-- <h3 style="margin: 0; padding: 10px 0; color: #fff; text-transform: uppercase; font-size: 1em;">设置</h3> -->
@@ -97,11 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
           };
 
           if (document.getElementById("biliob").offsetHeight >= 60) document.getElementById("biliob").classList.add("largetube");
-
-
         },
         login: () => {},
-        stats: (mid) => {
+        stats: (mid, upName) => {
           chrome.runtime.sendMessage({
             contentScriptQuery: "queryInfo",
             itemId: mid
@@ -119,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
               content.innerHTML = text;
               document.getElementById("ChanOver").appendChild(content);
 
+              document.getElementById("upName").innerText = upName;
               document.getElementById("BOL").href = `https://www.biliob.com/author/${mid}`;
               document.getElementById("BOLC").href = `https://space.bilibili.com/${mid}`;
 
@@ -240,11 +239,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (links.length != 0) {
               var link = links[0];
               var mid = link.getAttribute('href').replace('//space.bilibili.com/', '');
+              var upName = link.innerText;
             } else if (links2.length != 0) {
               var link = links2[0];
               var mid = link.getAttribute('href').replace('//space.bilibili.com/', '');
+              var upName = link.innerText;
             } else {return; }
-            biliob.video.initialize(mid);
+            biliob.video.initialize(mid, upName);
           }
         };
 

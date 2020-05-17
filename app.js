@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
             contentScriptQuery: "queryInfo",
             itemId: mid
           }, data => {
-            console.log(data);
+            // console.log(data);
             fetch(chrome.extension.getURL('stats.html')).then((response) => {
               return response.text();
             }).then((text) => {
@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       if (panel.id === 'v_upinfo') {
                 
                         let setLinkObserver1 = setInterval(() => {
-                          console.log('checking 1');
+                          // console.log('checking 1');
                           var links = document.getElementsByClassName('username');
                           if (links.length > 0) {
                             clearInterval(setLinkObserver1);
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       if (panel.className === 'members-info') {
 
                         let setLinkObserver2 = setInterval(() => {
-                          console.log('checking 2');
+                          // console.log('checking 2');
                           var links2 = document.getElementsByClassName('info-name');
                           if (links2.length > 0) {
                             clearInterval(setLinkObserver2);
@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
                           }
                         }, 250);
-                        
+
                       }
                     }
                   });

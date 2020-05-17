@@ -43,7 +43,7 @@ class BiliOB_LiveCount {
   }
 
   createMenu(menu) {
-    console.log('createMenu');
+    // console.log('createMenu');
     const menuButton = () => {
       let a = this.createElement("a", {
         "class": "n-btn n-livecount",
@@ -103,7 +103,7 @@ class BiliOB_LiveCount {
   }
 
   async createPage(outerPage) {
-    console.log('createPage');
+    // console.log('createPage');
     document.title = `粉丝实时计数`;
     outerPage.innerHTML = "";
 

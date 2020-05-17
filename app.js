@@ -287,10 +287,72 @@ document.addEventListener('DOMContentLoaded', function() {
             window.addEventListener("message", (e) => {
               if (e.data) {
                 injectTables();
+
+                var rcon = document.getElementsByClassName('r-con')[0];
+
+                var linkObserver = new MutationObserver(function(mutations) {
+                  mutations.forEach((mutation) => {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'href') {
+                      injectTables();
+                    }
+                  });
+                });
+
+                var observer = new MutationObserver(function(mutations) {
+                  mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0){
+                      var panel = mutation.addedNodes[0];
+                      if (panel.id === 'v_upinfo') {
+                
+                        let setLinkObserver1 = setInterval(() => {
+                          console.log('checking 1');
+                          var links = document.getElementsByClassName('username');
+                          if (links.length > 0) {
+                            clearInterval(setLinkObserver1);
+                            injectTables();
+                            linkObserver.observe(links[0], {attributes: true});
+                          }
+                        }, 250);
+                        
+                      }
+                      if (panel.className === 'members-info') {
+
+                        let setLinkObserver2 = setInterval(() => {
+                          console.log('checking 2');
+                          var links2 = document.getElementsByClassName('info-name');
+                          if (links2.length > 0) {
+                            clearInterval(setLinkObserver2);
+                            injectTables();
+                            for (var link of links2) {
+                              linkObserver.observe(link, {attributes: true});
+                            }
+                          }
+                        }, 250);
+                        
+                      }
+                    }
+                  });
+                });
+
+                observer.observe(rcon, {attributes: true, childList: true});
+
+                var links = document.getElementsByClassName('username');
+                var links2 = document.getElementsByClassName('info-name');    
+                if (links.length != 0) {
+                  linkObserver.observe(links[0], {attributes: true, childList: true});
+                }
+                if (links2.length != 0) {
+                  for (var link of links2) {
+                    linkObserver.observe(link, {attributes: true, childList: true});
+                  }
+                }
+
               }
             });
           }
         })
+
+
       }
       biliob.execute();
 

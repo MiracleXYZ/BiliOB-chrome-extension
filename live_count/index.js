@@ -67,7 +67,7 @@ class BiliOB_LiveCount {
     for (let item of menu.children) {
       if (item.localName !== 'a') continue;
 
-      item.onclock = () => window.location.replace(item.getAttribute('href'));
+      item.onclick = () => window.location.replace(item.getAttribute('href'));
     }
 
     button.classList.add("router-link-exact-active", "router-link-active", "active");

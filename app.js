@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
               document.getElementById("upName").innerText = upName;
               document.getElementById("BOL").href = `https://www.biliob.com/author/${mid}`;
-              document.getElementById("BOLC").href = `https://space.bilibili.com/${mid}`;
+              document.getElementById("BOLC").href = `https://space.bilibili.com/${mid}?live_count`;
 
               // 排名
               document.getElementById("SR").innerHTML = data.rank.fansRank || "--";

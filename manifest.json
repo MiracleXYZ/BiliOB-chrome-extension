@@ -1,7 +1,7 @@
 {
   "name": "BiliOB Chrome Extension",
   "description": "在B站页面中显示BiliOB统计数据，并提供实时粉丝显示等功能",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
